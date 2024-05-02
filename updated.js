@@ -1,8 +1,14 @@
 const express = require("express");
-const users = require("./MOCK_DATA.json");
+const fs = require("fs");
+const users = require("./MOCK-DATA.json");
 
 const app = express();
 const PORT = 8000;
+
+
+//Middleware-PlugIn
+app.use(express.urlencoded({extended: false}));
+
 
 //ROUTES
 app.get("/users", (req, res) => {
@@ -37,7 +43,12 @@ app
 
 app.post("/api/users", (req, res) => {
   //ToDo: Create new user
-  return res.json({ status: "pending" });
+  const body = req.body;
+  users.push({ ...body, id: users.length + 1});
+  fs.writeFile("./MOCK-DATA.json", JSON.stringify(users), (err, data) => {
+    return res.json({ status: "success", id: users.length });
+  });
+ 
 });
 
 app.listen(PORT, () => console.log(`server started at port 8000`));
