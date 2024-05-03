@@ -29,7 +29,7 @@ app.get("/users", (req, res) => {
 
 //REST API
 app.get("/api/users", (req, res) => {
-  
+  res.setHeader("X-myNAme","shudahnshu" );             //custom header you can make like this
   return res.json(users);
 });
 
