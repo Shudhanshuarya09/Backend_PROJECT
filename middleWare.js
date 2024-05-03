@@ -10,7 +10,8 @@ app.use(express.urlencoded({ extended: false })); //this middlware parsed all th
 
 app.use((req, res, next) => {
   console.log("Hello from middleware 1");
-  return res.end("Hey"); //this middleware return response which means next middleware tk request pochegi nhi to wo dekhega ni  phir usek aaage kuch v output mai code                                                  
+  // return res.end("Hey");  
+    next();                          //this middleware return response which means next middleware tk request pochegi nhi to wo dekhega ni  phir usek aaage kuch v output mai code                                                  
 });
 
 app.use((req, res, next) => {              //Self-made middleware
