@@ -14,7 +14,7 @@ app.get("/users", (req, res) => {
 });
 
 
-//REST API
+//REST API CODES
 app.get("/api/users", (req, res) => {
   return res.json(users);
   });
