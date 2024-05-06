@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-app.get("/users", async (req, res) => {
+router.get("/users", async (req, res) => {
   const allDbUsers = await User.find({});
   const html = `
   <ul>
@@ -15,13 +15,13 @@ app.get("/users", async (req, res) => {
 });
 
 
-//Rest API
-app.get("/api/users", async (req, res) => {
+
+router.get("/api/users", async (req, res) => {
   const allDbUsers = await user.find({});
   return res.json(allDbUsers);
 });
 
-app.route("/api/users/:id")
+router.route("/api/users/:id")
 .get(async (req, res) => {
   const user = await User.findNyId(req.params.id);
   if (!user) return res.status(404).json({ erroe: "user not found"});
@@ -36,7 +36,7 @@ app.route("/api/users/:id")
   return res.json({status: "Success"});
 });
 
-app.post("/api/users", async (req, res) => {
+router.post("/api/users", async (req, res) => {
   const body = req.body;
   if (
     !body ||
